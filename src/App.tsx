@@ -1,11 +1,12 @@
 import React from 'react';
-import {SafeAreaView, StatusBar, Text} from 'react-native';
+import {SafeAreaView, StatusBar} from 'react-native';
+import {MainScreen} from '@screens/MainScreen';
 
 const App: React.FC = () => {
   return (
     <SafeAreaView>
       <StatusBar />
-      <Text>Malltina App</Text>
+      <MainScreen />
     </SafeAreaView>
   );
 };
