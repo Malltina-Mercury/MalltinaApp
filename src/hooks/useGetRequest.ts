@@ -1,10 +1,13 @@
 import {DependencyList, useEffect, useState} from 'react';
 import request from 'helpers/request';
+import {BaseParams} from 'types/api/baseParams';
+import {SEED} from 'helpers/constants';
+import {AxiosResponse} from 'axios';
 
-export const useGetRequest = <ResponseT, ParamsT>(
+export const useGetRequest = <ResponseT, ParamsT extends BaseParams>(
   url: string,
   params: ParamsT,
-  deps: DependencyList = [],
+  deps: DependencyList,
 ) => {
   const [data, setData] = useState<ResponseT>();
   const [error, setError] = useState(undefined);
@@ -17,7 +20,10 @@ export const useGetRequest = <ResponseT, ParamsT>(
 
       try {
         const response = await request.get<ResponseT>(url, {
-          params,
+          params: {
+            ...params,
+            seed: SEED,
+          },
         });
         setData(response.data);
         setIsLoaded(true);
