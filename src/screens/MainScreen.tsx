@@ -1,8 +1,23 @@
+import { UserCard } from 'components/user/UserCard';
 import React from 'react';
-import {Text} from 'react-native';
+import { Text } from 'react-native';
+import { SearchInput } from './../components/search/SearchInput';
 
-interface Props {}
+interface Props { }
 
 export const MainScreen: React.FC<Props> = () => {
-  return <Text>Malltina App</Text>;
+let  personNameitem={
+    title: 'miss',
+    first: "emel",
+    last: 'mousavi',
+  }
+ 
+  return (
+    <>  
+     {/* <Text>Malltina App</Text> */}
+     <SearchInput/>
+      <UserCard personName={personNameitem}  />
+    </>
+
+  )
 };
