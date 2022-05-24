@@ -2,7 +2,6 @@ import {DependencyList, useEffect, useState} from 'react';
 import request from 'helpers/request';
 import {BaseParams} from 'types/api/baseParams';
 import {SEED} from 'helpers/constants';
-import {AxiosResponse} from 'axios';
 
 export const useGetRequest = <ResponseT, ParamsT extends BaseParams>(
   url: string,
