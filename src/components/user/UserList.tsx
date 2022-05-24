@@ -24,8 +24,7 @@ const UserList: React.FC<Props> = () => {
             ) : (
               <FlatList
                 data = {data?.results}
-                renderItem={({item}) => <UserCard personName={item.name} />}
-                // renderItem={({item}) => <UserCard personName={item} />}
+                 renderItem={({item}) => <UserCard person={item} />}
               />
             )}
         </View>

@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center',
         padding: height / 50,
+        marginBottom:'3%',
 
         borderRadius: 15,
         backgroundColor: "#fff",
@@ -27,7 +28,6 @@ const styles = StyleSheet.create({
         width: width / 6,
         height: height / 12,
         borderRadius: (width / 6 + height / 12) / 2,
-        backgroundColor: 'pink',
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -35,17 +35,20 @@ const styles = StyleSheet.create({
         marginLeft: '6%'
     },
     fullName: {
+        textAlign:'left',
         color: '#1f2937',
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: '600',
     },
     city: {
+        textAlign:'left',
         color: 'grey',
-        fontSize: 15
+        fontSize: 14
     },
     image:{
-        width: width / 7,
-        height: height / 12,
+        width: width /7,
+        height: height / 14,
+        borderRadius:(width / 7 + height / 14)/2,
         resizeMode: 'contain'
     }
 });
