@@ -2,6 +2,8 @@ import { UserCard } from 'components/user/UserCard';
 import React from 'react';
 import { Text } from 'react-native';
 import { SearchInput } from './../components/search/SearchInput';
+import UserList from '../components/user/UserList'
+
 
 interface Props { }
 
@@ -16,7 +18,8 @@ let  personNameitem={
     <>  
      {/* <Text>Malltina App</Text> */}
      <SearchInput/>
-      <UserCard personName={personNameitem}  />
+      {/* <UserCard personName={personNameitem}  /> */}
+      <UserList />
     </>
 
   )

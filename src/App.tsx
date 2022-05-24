@@ -9,9 +9,9 @@ const App: React.FC = () => {
   return (
     <SafeAreaView>
       <StatusBar />
-      {/*<MainScreen />*/}
-      <Text>{JSON.stringify(data)}</Text>
-      <Text>{JSON.stringify(error)}</Text>
+      <MainScreen />
+      {/* <Text>{JSON.stringify(data)}</Text>
+      <Text>{JSON.stringify(error)}</Text> */}
     </SafeAreaView>
   );
 };
