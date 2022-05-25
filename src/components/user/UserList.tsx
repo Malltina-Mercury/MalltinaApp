@@ -12,7 +12,7 @@ const UserList: React.FC<Props> = () => {
 
   const getUser = useUsersContext();
   const setUsers = useUsersContextSetState();
-  
+
       const initialParams = {
         page: 2,
         exc: '',
@@ -21,8 +21,8 @@ const UserList: React.FC<Props> = () => {
       }
       const [params, setParams] = useState <UsersParams>(initialParams);
       const [data,isLoaded, error] = useGetUserList(params, [params]);
-
-      // setUsers(data.results);
+      const userData=data?.results;
+      //  setUsers(prev=>[...prev,...userData]);
 
 
       const renderLoader = () => {
@@ -46,7 +46,7 @@ const UserList: React.FC<Props> = () => {
               <Text style = {styles.loading}>Loading...</Text>
             ) : (
               <FlatList
-                data = {data?.results}
+                data = {getUser}
                 keyExtractor = {(item, index) => item.id.name + index}
                 renderItem={({item}) => 
                   <UserCard person={item} />

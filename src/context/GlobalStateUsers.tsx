@@ -8,7 +8,7 @@ interface InputProviderProps {
 
 
 const UsersContext = createContext<Person[]>([]);
-const UsersContextSetState = createContext<(users:Person[])=>void>(()=>{});
+const UsersContextSetState = createContext<(users:Person[]|((users:Person[])=>Person[]))=>void>(()=>{});
 
 const GlobalStateUsers:React.FC <InputProviderProps>= ({ children }) => {
     const [users, setUsers] = useState<Person[]>([]);
