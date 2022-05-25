@@ -5,11 +5,16 @@ const styles = StyleSheet.create({
         width: '90%',
         alignSelf: 'center',
     },
-    loading: {
-        color: '#fbbf24',
-        fontSize: 20,
-        fontWeight: '600',
-        letterSpacing: 3
-    }
+    cardContainer:{
+        // flex: 1,
+        // alignItems: 'center',
+        // justifyContent: 'center',
+        // flexWrap: 'wrap',
+        // borderTopWidth: 5,
+        // borderTopColor: 'red',
+        // borderBottomWidth: 1,
+        // borderBottomColor: 'green',
+    },
+
 });
 export default styles;
