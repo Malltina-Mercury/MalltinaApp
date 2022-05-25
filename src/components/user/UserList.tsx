@@ -5,18 +5,24 @@ import {Text, View, FlatList, ActivityIndicator } from 'react-native';
 import {useGetUserList} from '../../hooks/useGetUserList';
 import {UsersParams} from 'types/api/users';
 import {UserCard } from './UserCard';
+import { useUsersContext,useUsersContextSetState } from 'context/GlobalStateUsers';
 
 interface Props { }
 const UserList: React.FC<Props> = () => {
 
+  const getUser = useUsersContext();
+  const setUsers = useUsersContextSetState();
       const initialParams = {
         page: 2,
         exc: '',
         results: 7,
         seed: 'Maltina'
       }
-      const [params, setParams] = useState <UsersParams>(initialParams)
+      const [params, setParams] = useState <UsersParams>(initialParams);
       const [data,isLoaded, error] = useGetUserList(params, [params]);
+
+      setUsers(data.results);
+
 
       const renderLoader = () => {
         return(
