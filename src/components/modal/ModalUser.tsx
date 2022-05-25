@@ -13,15 +13,10 @@ interface Props {
 
 
 export const ModalUser: React.FC<Props> = ({ modalVisible, person, setModalVisible }) => {
-    const { email, dob, name, location, picture, nat } = person;
+    const { email, dob, name, location, picture, nat,phone } = person;
 
-    //   function getFlagEmoji(countryCode:string) {
-    //     const codePoints = countryCode.toUpperCase().split('').map(char =>  127397 + char.charCodeAt(0));
-    //     return String.fromCodePoint(...codePoints);
-    //   }
-    //   getFlagEmoji(nat);
-    let countryCode = nat;
-    const emoji = countryCode.toUpperCase().replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397));
+    // let countryCode = nat;
+    const emoji = nat.toUpperCase().replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397));
  
     return (
         <Modal
@@ -38,12 +33,13 @@ export const ModalUser: React.FC<Props> = ({ modalVisible, person, setModalVisib
                     <Image style={styles.image} source={{ uri: picture.medium }} />
                 </View>
 
-                <Text style={styles.fullName}> {name.first} {name.last}  </Text>
+                <Text style={styles.fullName}>{name.title} {name.first} {name.last}  </Text>
                 <Text style={styles.email}>{email}</Text>
+                <Text style={styles.email}>{phone}</Text>
                 <View style={styles.ViewLocations}>
-                    <Text style={[styles.city, { backgroundColor: '#d8b4fe' }]}>{dob.age}</Text>
-                    <Text style={[styles.city, { backgroundColor: '#fecaca' }]}>{location.city}</Text>
-                    <Text style={[styles.city, { backgroundColor: '#facc15' }]}>  {location.country}: {emoji}</Text>
+                <Text style={[styles.city, { borderColor: '#d946ef',color: '#d946ef'}]}> {emoji}  {location.country}</Text>
+                    <Text style={[styles.city, { borderColor: '#0ea5e9' ,color: '#0ea5e9'}]}>{location.city}</Text>
+                    <Text style={[styles.city, { borderColor: '#10b981' ,color: '#10b981'}]}>{dob.age}</Text>
                 </View>
 
             </View>

@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         width: width / 2.2,
         height: height / 4.5,
         borderRadius: (width / 2.2 + height / 4.5) / 2,
-        backgroundColor: '#5eead4',
+        backgroundColor: '#fbbf24',
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -48,11 +48,13 @@ const styles = StyleSheet.create({
         marginTop: '6%',
     },
     city: {
+        fontSize:16,
         paddingVertical: '1%',
         paddingHorizontal: '3%',
         borderRadius: 15,
         color: '#fff',
         marginRight: '3%',
+        borderWidth:2,
     },
     image: {
         width: width / 3,
