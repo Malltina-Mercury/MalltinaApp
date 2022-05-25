@@ -1,3 +1,3 @@
 export interface BaseParams {
-  seed: string;
+  seed?: string;
 }

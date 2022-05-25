@@ -3,9 +3,9 @@ import {BaseResponse} from 'types/api/baseResponse';
 import {BaseParams} from 'types/api/baseParams';
 
 export interface UsersParams extends BaseParams {
-  page: number;
-  exc: string;
-  results: number;
+  page?: number;
+  exc?: string;
+  results?: number;
 }
 
 export interface UsersResponse extends BaseResponse {
