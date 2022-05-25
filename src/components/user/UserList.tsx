@@ -12,6 +12,7 @@ const UserList: React.FC<Props> = () => {
 
   const getUser = useUsersContext();
   const setUsers = useUsersContextSetState();
+  
       const initialParams = {
         page: 2,
         exc: '',
@@ -21,7 +22,7 @@ const UserList: React.FC<Props> = () => {
       const [params, setParams] = useState <UsersParams>(initialParams);
       const [data,isLoaded, error] = useGetUserList(params, [params]);
 
-      setUsers(data.results);
+      // setUsers(data.results);
 
 
       const renderLoader = () => {
