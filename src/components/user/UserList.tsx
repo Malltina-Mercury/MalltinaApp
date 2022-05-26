@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import styles from './UserListStyles';
-
 import { Text, View, FlatList, ActivityIndicator } from 'react-native';
 import { useGetUserList } from '../../hooks/useGetUserList';
 import { UsersParams } from 'types/api/users';
 import { UserCard } from './UserCard';
 import { useUsersContext, useUsersContextSetState } from 'context/GlobalStateUsers';
+import { useUsersCacheContextSetState } from 'context/GlobalStateUsersCache';
+
 
 interface Props { }
 const UserList: React.FC<Props> = () => {
 
   const getUser = useUsersContext();
   const setUsers = useUsersContextSetState();
+const setUserCache=useUsersCacheContextSetState();
+
 
   const initialParams = {
     page: 2,
@@ -24,7 +27,8 @@ const UserList: React.FC<Props> = () => {
  
   useEffect(() => {
     if (data?.results) {
-      setUsers(prev => [...prev, ...data?.results])
+      setUsers(prev => [...prev, ...data?.results]);
+      setUserCache(prev => [...prev, ...data?.results]);
     }
   }, [data?.results])
 
@@ -59,7 +63,7 @@ const UserList: React.FC<Props> = () => {
           }
           // onEndReached = {fetchMoreData}
           // onEndReachedThreshold = {0.1}
-          ListFooterComponent={renderLoader}
+          // ListFooterComponent={renderLoader}
         />
       )}
     </View>
