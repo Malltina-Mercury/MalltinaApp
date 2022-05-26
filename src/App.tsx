@@ -3,6 +3,8 @@ import {SafeAreaView, StatusBar, Text} from 'react-native';
 import {MainScreen} from '@screens/MainScreen';
 import {useGetUserList} from 'hooks/useGetUserList';
 
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 const App: React.FC = () => {
   const [data, isLoaded, error] = useGetUserList({results: 1, page: 1}, []);
 
@@ -12,6 +14,7 @@ const App: React.FC = () => {
       {/*<MainScreen />*/}
       <Text>{JSON.stringify(data)}</Text>
       <Text>{JSON.stringify(error)}</Text>
+      <Icon name="home" />
     </SafeAreaView>
   );
 };

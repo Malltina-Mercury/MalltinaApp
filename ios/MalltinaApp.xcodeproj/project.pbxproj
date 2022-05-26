@@ -41,6 +41,22 @@
 		5709B34CF0A7D63546082F79 /* Pods-MalltinaApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MalltinaApp.release.xcconfig"; path = "Target Support Files/Pods-MalltinaApp/Pods-MalltinaApp.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-MalltinaApp-MalltinaAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MalltinaApp-MalltinaAppTests.debug.xcconfig"; path = "Target Support Files/Pods-MalltinaApp-MalltinaAppTests/Pods-MalltinaApp-MalltinaAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-MalltinaApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MalltinaApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EAAF8C3283FA84D00E651BF /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
+		7EAAF8C4283FA84D00E651BF /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
+		7EAAF8C5283FA84D00E651BF /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
+		7EAAF8C6283FA84D00E651BF /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
+		7EAAF8C7283FA84D00E651BF /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Brands.ttf; sourceTree = "<group>"; };
+		7EAAF8C8283FA84D00E651BF /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
+		7EAAF8C9283FA84D00E651BF /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AntDesign.ttf; sourceTree = "<group>"; };
+		7EAAF8CA283FA84D00E651BF /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foundation.ttf; sourceTree = "<group>"; };
+		7EAAF8CB283FA84D00E651BF /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
+		7EAAF8CC283FA84D00E651BF /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
+		7EAAF8CD283FA84D00E651BF /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
+		7EAAF8CE283FA84D00E651BF /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		7EAAF8CF283FA84D00E651BF /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
+		7EAAF8D0283FA84D00E651BF /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
+		7EAAF8D1283FA84D00E651BF /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
+		7EAAF8D2283FA84D00E651BF /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MalltinaApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-MalltinaApp-MalltinaAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MalltinaApp-MalltinaAppTests.release.xcconfig"; path = "Target Support Files/Pods-MalltinaApp-MalltinaAppTests/Pods-MalltinaApp-MalltinaAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -106,6 +122,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7EAAF8C2283FA84D00E651BF /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7EAAF8C3283FA84D00E651BF /* Fontisto.ttf */,
+				7EAAF8C4283FA84D00E651BF /* Octicons.ttf */,
+				7EAAF8C5283FA84D00E651BF /* Feather.ttf */,
+				7EAAF8C6283FA84D00E651BF /* Entypo.ttf */,
+				7EAAF8C7283FA84D00E651BF /* FontAwesome5_Brands.ttf */,
+				7EAAF8C8283FA84D00E651BF /* MaterialCommunityIcons.ttf */,
+				7EAAF8C9283FA84D00E651BF /* AntDesign.ttf */,
+				7EAAF8CA283FA84D00E651BF /* Foundation.ttf */,
+				7EAAF8CB283FA84D00E651BF /* Ionicons.ttf */,
+				7EAAF8CC283FA84D00E651BF /* FontAwesome5_Solid.ttf */,
+				7EAAF8CD283FA84D00E651BF /* FontAwesome5_Regular.ttf */,
+				7EAAF8CE283FA84D00E651BF /* FontAwesome.ttf */,
+				7EAAF8CF283FA84D00E651BF /* Zocial.ttf */,
+				7EAAF8D0283FA84D00E651BF /* EvilIcons.ttf */,
+				7EAAF8D1283FA84D00E651BF /* SimpleLineIcons.ttf */,
+				7EAAF8D2283FA84D00E651BF /* MaterialIcons.ttf */,
+			);
+			name = Fonts;
+			path = "../node_modules/react-native-vector-icons/Fonts";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +156,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				7EAAF8C2283FA84D00E651BF /* Fonts */,
 				13B07FAE1A68108700A75B9A /* MalltinaApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* MalltinaAppTests */,
