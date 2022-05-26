@@ -1,27 +1,20 @@
 import React from 'react';
-import { SearchInput } from './../components/search/SearchInput';
-import UserList from '../components/user/UserList'
-import GlobalStateUsers from 'context/GlobalStateUsers';
-import GlobalStateUsersCache from 'context/GlobalStateUsersCache';
+import {SearchInput} from 'components/search/SearchInput';
+import UserList from '../components/user/UserList';
+import SearchContextProvider from 'context/SearchContextProvider';
+import UsersContextProvider from 'context/UsersContextProvider';
 
-
-
-interface Props { }
+interface Props {}
 
 export const MainScreen: React.FC<Props> = () => {
-
-
   return (
     <>
-
-      <GlobalStateUsers>
-        <GlobalStateUsersCache>
+      <SearchContextProvider>
+        <UsersContextProvider>
           <SearchInput />
           <UserList />
-        </GlobalStateUsersCache>
-      </GlobalStateUsers>
-
+        </UsersContextProvider>
+      </SearchContextProvider>
     </>
-
-  )
+  );
 };
