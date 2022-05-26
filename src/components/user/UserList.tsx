@@ -1,11 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styles from './UserListStyles';
-<<<<<<< HEAD
-import { Text, View, FlatList, ActivityIndicator } from 'react-native';
-=======
-
 import { Text, View, FlatList, SafeAreaView } from 'react-native';
->>>>>>> 02909fafaf8df8cfd013e58790ab3550094ad28a
 import { useGetUserList } from '../../hooks/useGetUserList';
 import { UsersParams } from 'types/api/users';
 import { UserCard } from './UserCard';
@@ -69,18 +64,12 @@ const setUserCache=useUsersCacheContextSetState();
           renderItem={({ item }) =>
             <View style={styles.cardContainer}><UserCard person={item} /></View>
           }
-<<<<<<< HEAD
-          // onEndReached = {fetchMoreData}
-          // onEndReachedThreshold = {0.1}
-          // ListFooterComponent={renderLoader}
-=======
           onEndReached = {fetchMoreData}
           onEndReachedThreshold = {0.1}
           ListFooterComponent={renderLoader}
           ListEmptyComponent={renderEmpty}
           contentContainerStyle={{ flexDirection:'column', paddingTop:40 }}
           showsVerticalScrollIndicator={false}
->>>>>>> 02909fafaf8df8cfd013e58790ab3550094ad28a
         />
         </SafeAreaView>
       )}
