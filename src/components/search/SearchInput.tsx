@@ -2,23 +2,20 @@ import React, {useCallback, useEffect, useState} from 'react';
 import styles from './SearchInputStyles';
 import {TextInput, View} from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/FontAwesome';
-import {
-  useUsersContext,
-  useUsersContextSetState,
-} from 'context/GlobalStateUsers';
-import {useUsersCacheContext} from 'context/GlobalStateUsersCache';
+import {useSearchContext} from 'context/SearchContextProvider';
+import {useUsersContext} from 'context/UsersContextProvider';
 
 interface Props {}
 
 export const SearchInput: React.FC<Props> = () => {
   const [searchName, setSearchName] = useState<string>('');
-  const getUser = useUsersContext();
-  const setUsers = useUsersContextSetState();
-  const cacheUsers = useUsersCacheContext();
+  const [getUser, setUsers] = useSearchContext();
+  const [{users: cacheUsers}] = useUsersContext();
   // let cacheUsers = [...getUser];
 
   useEffect(() => {
     onPressSearch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchName]);
 
   const onChangeText =
@@ -32,7 +29,7 @@ export const SearchInput: React.FC<Props> = () => {
   const onPressSearch = useCallback(() => {
     console.log('searchName', searchName);
     if (searchName) {
-      const newData = cacheUsers.filter(item => {
+      const newData = cacheUsers?.filter(item => {
         const itemData = (item.name.first + item.name.last).toLowerCase();
         const textData = searchName.replace(/\s/g, '').toLowerCase();
         console.log('textData', textData);
@@ -41,22 +38,23 @@ export const SearchInput: React.FC<Props> = () => {
       });
       console.log('newData', newData);
       if (newData) {
-        setUsers(newData);
+        setUsers({filteredUsers: newData});
         console.log('ok items');
         console.log('cacheUsers', cacheUsers);
         console.log('getUser', getUser);
       } else {
-        setUsers(cacheUsers);
+        setUsers({filteredUsers: cacheUsers});
         console.log('no items');
         console.log('cacheUsers', cacheUsers);
         console.log('getUser', getUser);
       }
     } else {
-      setUsers(cacheUsers);
+      setUsers({filteredUsers: cacheUsers});
       console.log('empty input Search');
       console.log('cacheUsers', cacheUsers);
       console.log('getUser', getUser);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchName]);
 
   return (

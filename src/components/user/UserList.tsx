@@ -4,19 +4,15 @@ import {useGetUserList} from 'hooks/useGetUserList';
 import {UsersParams} from 'types/api/users';
 import {UserCard} from './UserCard';
 import Loader from './Loader';
-import {
-  useUsersContext,
-  useUsersContextSetState,
-} from 'context/GlobalStateUsers';
-import {useUsersCacheContextSetState} from 'context/GlobalStateUsersCache';
+import {useSearchContext} from 'context/SearchContextProvider';
+import {useUsersContext} from 'context/UsersContextProvider';
 import styles from './UserListStyles';
 
 interface Props {}
 
 const UserList: React.FC<Props> = () => {
-  const getUser = useUsersContext();
-  const setUsers = useUsersContextSetState();
-  const setUserCache = useUsersCacheContextSetState();
+  const [getUser, setUsers] = useSearchContext();
+  const [, setUserCache] = useUsersContext();
 
   const initialParams = {
     page: 2,
@@ -29,9 +25,21 @@ const UserList: React.FC<Props> = () => {
 
   useEffect(() => {
     if (data?.results) {
-      setUsers(prev => [...prev, ...data?.results]);
-      setUserCache(prev => [...prev, ...data?.results]);
+      setUsers(prev => {
+        const newState = prev;
+        newState.filteredUsers = [
+          ...(prev.filteredUsers || []),
+          ...data?.results,
+        ];
+        return newState;
+      });
+      setUserCache(prev => {
+        const newState = prev;
+        newState.users = [...(prev.users || []), ...data?.results];
+        return newState;
+      });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.results]);
 
   /* use callback : if page add 1 get call useGetUserList again */
@@ -55,7 +63,7 @@ const UserList: React.FC<Props> = () => {
       ) : (
         <SafeAreaView>
           <FlatList
-            data={getUser}
+            data={getUser.filteredUsers}
             keyExtractor={(item, index) => item.id.name + index}
             renderItem={({item}) => (
               <View style={styles.cardContainer}>
