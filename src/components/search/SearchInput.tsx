@@ -13,12 +13,12 @@ export const SearchInput: React.FC<Props> = () => {
     const [searchName, setSearchName] = useState<string>('');
     const getUser = useUsersContext();
     const setUsers = useUsersContextSetState();
-  const cacheUsers = useUsersCacheContext();
+    const cacheUsers = useUsersCacheContext();
     // let cacheUsers = [...getUser];
 
-    useEffect(()=>{
+    useEffect(() => {
         onPressSearch();
-    },[searchName]);
+    }, [searchName]);
 
 
     const onChangeText =
@@ -32,11 +32,11 @@ export const SearchInput: React.FC<Props> = () => {
 
     const onPressSearch = useCallback(() => {
         console.log('searchName', searchName);
-        if ( searchName) {
+        if (searchName) {
             const newData = cacheUsers.filter((item) => {
-                const itemData = (item.name.first+item.name.last).toLowerCase();
+                const itemData = (item.name.first + item.name.last).toLowerCase();
                 const textData = searchName.replace(/\s/g, '').toLowerCase();
-                console.log("textData",textData);
+                console.log("textData", textData);
                 //  return itemData.includes(textData);
                 return itemData.indexOf(textData) > -1;
             });
