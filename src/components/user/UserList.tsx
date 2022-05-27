@@ -70,11 +70,10 @@ const UserList: React.FC<Props> = () => {
                 <UserCard person={item} />
               </View>
             )}
-            onEndReached={fetchMoreData}
-            onEndReachedThreshold={0.1}
-            ListFooterComponent={renderLoader}
-            ListEmptyComponent={renderEmpty}
-            contentContainerStyle={{flexDirection: 'column', paddingTop: 40}}
+            // onEndReached={fetchMoreData}
+            // onEndReachedThreshold={0.1}
+            // ListFooterComponent={renderLoader}
+            // ListEmptyComponent={renderEmpty}
             showsVerticalScrollIndicator={false}
           />
         </SafeAreaView>
