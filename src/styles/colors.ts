@@ -293,3 +293,24 @@ export const mainColors = {
   pink: colors.pink['500'],
   rose: colors.rose['500'],
 };
+
+export const userColors = [
+  mainColors.slate,
+  mainColors.red,
+  mainColors.orange,
+  mainColors.amber,
+  mainColors.yellow,
+  mainColors.lime,
+  mainColors.green,
+  mainColors.emerald,
+  mainColors.teal,
+  mainColors.cyan,
+  mainColors.sky,
+  mainColors.blue,
+  mainColors.indigo,
+  mainColors.violet,
+  mainColors.purple,
+  mainColors.fuchsia,
+  mainColors.pink,
+  mainColors.rose,
+];
