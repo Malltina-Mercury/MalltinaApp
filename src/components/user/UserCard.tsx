@@ -3,6 +3,7 @@ import styles from './UserCardStyles';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {Person} from 'types/entity/person';
 import {ModalUser} from 'components/modal/ModalUser';
+import {stringBasedRandomHexColor} from 'helpers/color';
 
 interface Props {
   person: Person;
@@ -11,13 +12,6 @@ interface Props {
 export const UserCard: React.FC<Props> = ({person}) => {
   const {name, location, picture} = person;
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-
-  const generateColor = () => {
-    const randomColor = Math.floor(Math.random() * 16777215)
-      .toString(16)
-      .padStart(6, '0');
-    return `#${randomColor}`;
-  };
 
   const openModal = () => {
     setModalVisible(prev => !prev);
@@ -28,7 +22,15 @@ export const UserCard: React.FC<Props> = ({person}) => {
       style={styles.card}
       activeOpacity={0.8}
       onPress={openModal}>
-      <View style={[styles.viewImag, {backgroundColor: generateColor()}]}>
+      <View
+        style={[
+          styles.viewImag,
+          {
+            backgroundColor: stringBasedRandomHexColor(
+              `${name.first} ${name.last}`,
+            ),
+          },
+        ]}>
         <Image style={styles.image} source={{uri: picture.thumbnail}} />
       </View>
       <View style={styles.details}>
