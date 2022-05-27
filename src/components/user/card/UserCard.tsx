@@ -4,6 +4,7 @@ import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {Person} from 'types/entity/person';
 import {ModalUser} from 'components/modal/ModalUser';
 import {stringBasedRandomHexColor} from 'helpers/color';
+import {Thumbnail} from 'components/user/card/Thumbnail';
 
 interface Props {
   person: Person;
@@ -12,6 +13,7 @@ interface Props {
 export const UserCard: React.FC<Props> = ({person}) => {
   const {name, location, picture} = person;
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const bgColor = stringBasedRandomHexColor(`${name.first} ${name.last}`);
 
   const openModal = () => {
     setModalVisible(prev => !prev);
@@ -22,17 +24,8 @@ export const UserCard: React.FC<Props> = ({person}) => {
       style={styles.card}
       activeOpacity={0.8}
       onPress={openModal}>
-      <View
-        style={[
-          styles.viewImag,
-          {
-            backgroundColor: stringBasedRandomHexColor(
-              `${name.first} ${name.last}`,
-            ),
-          },
-        ]}>
-        <Image style={styles.image} source={{uri: picture.thumbnail}} />
-      </View>
+      <Thumbnail bgColor={bgColor} imageUri={picture.thumbnail} />
+
       <View style={styles.details}>
         <Text style={styles.fullName}>
           {name.title} {name.first} {name.last}

@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {FlatList, SafeAreaView, Text, View} from 'react-native';
 import {useGetUserList} from 'hooks/useGetUserList';
 import {UsersParams} from 'types/api/users';
-import {UserCard} from './UserCard';
+import {UserCard} from './card/UserCard';
 import Loader from './Loader';
 import {useSearchContext} from 'context/SearchContextProvider';
 import {useUsersContext} from 'context/UsersContextProvider';
