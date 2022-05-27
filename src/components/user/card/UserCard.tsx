@@ -4,7 +4,8 @@ import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {Person} from 'types/entity/person';
 import {ModalUser} from 'components/modal/ModalUser';
 import {stringBasedRandomHexColor} from 'helpers/color';
-import {Thumbnail} from 'components/user/card/Thumbnail';
+import {CardThumbnail} from 'components/user/card/CardThumbnail';
+import {CardContent} from 'components/user/card/CardContent';
 
 interface Props {
   person: Person;
@@ -24,14 +25,13 @@ export const UserCard: React.FC<Props> = ({person}) => {
       style={styles.card}
       activeOpacity={0.8}
       onPress={openModal}>
-      <Thumbnail bgColor={bgColor} imageUri={picture.thumbnail} />
+      <CardThumbnail bgColor={bgColor} imageUri={picture.thumbnail} />
 
-      <View style={styles.details}>
-        <Text style={styles.fullName}>
-          {name.title} {name.first} {name.last}
-        </Text>
-        <Text style={styles.city}>{location.city}</Text>
-      </View>
+      <CardContent
+        title={`${name.title} ${name.first} ${name.last}`}
+        subTitle={location.city}
+      />
+
       {modalVisible && (
         <ModalUser
           person={person}

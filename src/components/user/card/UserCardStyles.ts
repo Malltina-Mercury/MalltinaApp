@@ -24,19 +24,5 @@ const styles = StyleSheet.create({
     shadowRadius: 9.51,
     elevation: 15,
   },
-  details: {
-    marginLeft: '6%',
-  },
-  fullName: {
-    textAlign: 'left',
-    color: '#1f2937',
-    fontSize: 20,
-    fontWeight: '600',
-  },
-  city: {
-    textAlign: 'left',
-    color: 'grey',
-    fontSize: 14,
-  },
 });
 export default styles;
