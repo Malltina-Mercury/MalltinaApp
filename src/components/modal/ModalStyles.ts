@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
     width: '90%',
     alignItems: 'center',
     alignSelf: 'center',
-    paddingVertical: height / 20,
+    paddingTop: height / 60,
+    paddingBottom: height / 20,
     marginTop: '40%',
 
     borderRadius: 15,
@@ -61,6 +62,10 @@ const styles = StyleSheet.create({
     height: height / 6,
     borderRadius: (width / 3 + height / 6) / 2,
     resizeMode: 'contain',
+  },
+  iconClose:{
+    alignSelf:'flex-start',
+    marginLeft:20
   },
 });
 export default styles;
