@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styles from './SearchInputStyles';
-import { TextInput, View } from 'react-native';
+import { TextInput, View ,Dimensions} from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/FontAwesome';
 import { useSearchContext } from 'context/SearchContextProvider';
 import { useUsersContext } from 'context/UsersContextProvider';
+const { height} = Dimensions.get('screen');
 
 interface Props { }
 
@@ -64,7 +65,7 @@ export const SearchInput: React.FC<Props> = () => {
     <View style={styles.cardSearch}>
       <MaterialIcon
         name="search"
-        size={32}
+        size={height/23}
         color="#fbbf24"
         onPress={onPressSearch}
       />

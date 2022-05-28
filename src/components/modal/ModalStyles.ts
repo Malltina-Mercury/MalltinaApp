@@ -1,18 +1,23 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
-const {width, height} = Dimensions.get('screen');
+const { width, height } = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
+  viewModal: {
+    backgroundColor: '#ffffffeb',
+    height: height,
+    width: width
+  },
   cardModal: {
     height: height / 2,
-    width: '90%',
+    width: width / 1.1,
     alignItems: 'center',
     alignSelf: 'center',
     paddingTop: height / 60,
     paddingBottom: height / 20,
-    marginTop: '40%',
+    marginTop: height / 5,
 
-    borderRadius: 15,
+    borderRadius: height / 70,
     backgroundColor: '#fff',
     shadowColor: '#000',
     shadowOffset: {
@@ -35,26 +40,31 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
     color: '#1f2937',
-    marginTop: '5%',
+    marginTop: height / 60,
+  },
+  viewEmail: {
+    flexDirection: 'row',
+    marginTop: height / 90,
+    alignItems: 'center'
   },
   email: {
     fontSize: 14,
     color: 'grey',
-    marginTop: '3%',
+    paddingLeft: width / 60,
   },
   ViewLocations: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: '6%',
+    marginTop: height / 30,
   },
   city: {
     fontSize: 16,
-    paddingVertical: '1%',
-    paddingHorizontal: '3%',
+    paddingVertical: height / 190,
+    paddingHorizontal: width / 35,
     borderRadius: 15,
     color: '#fff',
-    marginRight: '3%',
+    marginRight: width / 40,
     borderWidth: 2,
   },
   image: {
@@ -63,9 +73,9 @@ const styles = StyleSheet.create({
     borderRadius: (width / 3 + height / 6) / 2,
     resizeMode: 'contain',
   },
-  iconClose:{
-    alignSelf:'flex-start',
-    marginLeft:20
+  iconClose: {
+    alignSelf: 'flex-end',
+    marginRight: width / 20
   },
 });
 export default styles;

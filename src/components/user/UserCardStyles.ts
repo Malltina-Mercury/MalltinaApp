@@ -5,15 +5,15 @@ const {width, height} = Dimensions.get('screen');
 const styles = StyleSheet.create({
   card: {
     height: height / 9,
-    width: '90%',
+    width: width/1.2,
     flexDirection: 'row',
     // justifyContent: 'space-between',
     alignItems: 'center',
     alignSelf: 'center',
     padding: height / 50,
-    marginBottom: '3%',
+    marginBottom: height/70,
 
-    borderRadius: 15,
+    borderRadius: height/70,
     backgroundColor: '#fff',
     shadowColor: '#000',
     shadowOffset: {
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   details: {
-    marginLeft: '6%',
+    marginLeft: width/25,
   },
   fullName: {
     textAlign: 'left',
