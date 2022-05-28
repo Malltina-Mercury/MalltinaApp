@@ -4,7 +4,7 @@ const { width, height } = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
   viewModal: {
-    backgroundColor: '#ffffffeb',
+    backgroundColor: '#8b8b8bc2',
     height: height,
     width: width
   },
