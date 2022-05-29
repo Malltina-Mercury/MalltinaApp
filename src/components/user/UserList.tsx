@@ -23,15 +23,16 @@ const UserList: React.FC<Props> = () => {
   };
 
   const [params, setParams] = useState<UsersParams>(initialParams);
-  const [data, isLoaded] = useGetUserList(params, [params]);
+  const [data, isLoaded] = useGetUserList(params, []);
 
+  const nextPage = data?.info.page && data?.info.page + 1
   const [nextData, isLoadedNextData] = useGetUserList({
     ...initialParams,
-    page: params.page ? params.page + 1 : params.page,
-  }, []);
+    page: nextPage,
+  }, [params]);
   
   const [moreLoading, setMoreLoading] = useState<boolean>(false)
-  const [cacheData, setCacheData] = useState <UsersResponse | undefined>();
+  const [cacheData, setCacheData] = useState <UsersResponse>();
 
   useEffect(() => {
     if (data?.results) {
@@ -58,17 +59,24 @@ const UserList: React.FC<Props> = () => {
   /* use callback : if page add 1 get call useGetUserList again */
   const fetchMoreData = useCallback((): void => {
     /*if ! isListEnd && !moreLoading */
-      if (!moreLoading){
-        setParams({
-          ...params,
-          page: params.page ? params.page + 1 : params.page,
-        }); /* update data with next page */
-        if (nextData?.results !== undefined){
+    if (nextData?.results !== undefined){
+      if (!moreLoading && isLoadedNextData && nextData?.info.page){
           setCacheData(nextData) 
+          setParams({
+            ...params,
+            page: params.page ? params.page + 1 : params.page,
+          }); /* update data with next page */
         }
       }
-    // console.log('data?.info.page')
-    // console.log(data?.info)
+      else{
+        setCacheData(data) 
+      }
+    
+    console.log('data?.info.page')
+    console.log(params.page)
+    console.log(cacheData);
+    console.log(nextData?.info)
+    console.log(data?.info)
   }, [params]);
 
 
@@ -84,16 +92,17 @@ const UserList: React.FC<Props> = () => {
       ) : (
         <SafeAreaView>
           <FlatList
-            data={getUser.filteredUsers}
+            // data={getUser.filteredUsers}
             // data = {data?.info?.page === 1 ? nextData?.results : data?.results}
+            data = {cacheData?.results? cacheData?.results : data?.results}
             keyExtractor={(item, index) => item.id.name + index}
             renderItem={({item}) => (
               <View style={styles.cardContainer}>
                 <UserCard person={item} />
               </View>
             )}
-            // onEndReached={fetchMoreData}
-            // onEndReachedThreshold={0.1}
+            onEndReached={fetchMoreData}
+            onEndReachedThreshold={0.1}
             ListFooterComponent={renderLoader}
             ListEmptyComponent={renderEmpty}
             showsVerticalScrollIndicator={false}
