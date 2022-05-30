@@ -1,7 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {FlatList, SafeAreaView, Text, View} from 'react-native';
 import {useGetUserList} from 'hooks/useGetUserList';
-import {UsersParams} from 'types/api/users';
+import {UsersParams, UsersResponse} from 'types/api/users';
+import {Person} from 'types/entity/person'
 import {UserCard} from './UserCard';
 import Loader from './Loader';
 import {useSearchContext} from 'context/SearchContextProvider';
@@ -23,8 +24,11 @@ const UserList: React.FC<Props> = () => {
   const [params, setParams] = useState<UsersParams>(initialParams);
   const [data, isLoaded] = useGetUserList(params, [params]);
 
+  const [lastData, setLastData] = useState<Person[]>()
+
   useEffect(() => {
     if (data?.results) {
+      setLastData(data?.results)
       setUsers(prev => {
         const newState = prev;
         newState.filteredUsers = [
@@ -37,6 +41,7 @@ const UserList: React.FC<Props> = () => {
       setUserCache(prev => {
         const newState = prev;
         newState.users = [...(prev.users || []), ...data?.results];
+        newState.latestPageFetched = params.page
         return newState;
       });
     }
@@ -45,11 +50,18 @@ const UserList: React.FC<Props> = () => {
 
   /* use callback : if page add 1 get call useGetUserList again */
   const fetchMoreData = useCallback((): void => {
-    // console.log(params.page)
-    setParams({
-      ...params,
-      page: params.page ? params.page + 1 : params.page,
-    });
+    console.log(params.page)
+    if (getUser.query !== '' && getUser.filteredUsers !== undefined){
+      setLastData(getUser.filteredUsers);
+    }
+    else{
+      setParams({
+        ...params,
+        page: params.page ? params.page + 1 : params.page,
+      });
+      setLastData(data?.results);
+    }
+
   }, [params]);
 
   const renderLoader = () => (isLoaded ? <Loader /> : null);
@@ -64,17 +76,18 @@ const UserList: React.FC<Props> = () => {
       ) : (
         <SafeAreaView>
           <FlatList
-            data={getUser.filteredUsers}
+            data={lastData}
+            // data={getUser.filteredUsers}
             keyExtractor={(item, index) => item.id.name + index}
             renderItem={({item}) => (
               <View style={styles.cardContainer}>
                 <UserCard person={item} />
               </View>
             )}
-            // onEndReached={fetchMoreData}
-            // onEndReachedThreshold={0.1}
-            // ListFooterComponent={renderLoader}
-            // ListEmptyComponent={renderEmpty}
+            onEndReached={fetchMoreData}
+            onEndReachedThreshold={0.1}
+            ListFooterComponent={renderLoader}
+            ListEmptyComponent={renderEmpty}
             showsVerticalScrollIndicator={false}
           />
         </SafeAreaView>
