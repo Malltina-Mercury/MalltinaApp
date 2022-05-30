@@ -16,20 +16,16 @@ const UserList: React.FC<Props> = () => {
   const [, setUserCache] = useUsersContext();
 
   const initialParams = {
-    page: 2,
+    page: 1,
     exc: '',
-    results: 12,
+    results: 10,
     seed: 'Maltina',
   };
   const [params, setParams] = useState<UsersParams>(initialParams);
   const [data, isLoaded] = useGetUserList(params, [params]);
 
-  // const [lastData, setLastData] = useState<Person[]>()
-
   useEffect(() => {
-    // console.log(getUser)
     if (data?.results) {
-      // setLastData(data?.results)
       setUsers(prev => {
         const newState = prev;
         newState.filteredUsers = [
@@ -51,61 +47,55 @@ const UserList: React.FC<Props> = () => {
 
   /* use callback : if page add 1 get call useGetUserList again */
   const fetchMoreData = useCallback((): void => {
-    // console.log('getUser.query')
-    // console.log(getUser.query)
-    if (getUser.query === undefined){
-      // console.log(params.page)
+    if (!getUser?.query){
+      console.log(params.page)
       setParams({
         ...params,
         page: params.page ? params.page + 1 : params.page,
       });
       if (data?.results) {
-        // setUsers(prev => {
-        //   console.log(prev)
-        //   const newState = prev;
-        //   getUser.filteredUsers = [
-        //     ...(getUser.filteredUsers || []),
-        //     ...data?.results,
-        //   ];
-        //   newState.query=prev.query;
-        //   return newState;
-        // });
-        setUsers({
-          ...getUser,
-          filteredUsers : [...getUser.filteredUsers || [], ...data?.results]
-        })
+        //   setUsers({
+        //     ...getUser,
+        //     filteredUsers : [...getUser.filteredUsers || [], ...data?.results]
+        //   })
+        setUsers(prev => {
+          // console.log(params.page)
+          const newState = prev;
+          // newState.filteredUsers = [
+          //   ...(prev.filteredUsers || []),
+          //   ...data?.results,
+          // ];
+          newState.filteredUsers = [
+            ...data?.results
+          ];
+          return newState;
+        });
       }
     }
 
   }, [params]);
 
-  const renderLoader = () => (isLoaded ? <Loader /> : null);
+  // const renderLoader = () => (isLoaded ? <Loader /> : null);
   const renderEmpty = () => {
     return <Text>No Data at the moment or check Internt</Text>;
   };
 
   return (
     <View style={styles.container}>
-      {!isLoaded ? (
-        <Loader />
-      ) : (
-        <SafeAreaView>
-          <FlatList
-            data={getUser.filteredUsers}
-            keyExtractor={(item, index) => item.id.name + index}
-            renderItem={({item}) => (
-              <View style={styles.cardContainer}>
-                <UserCard person={item} />
-              </View>
-            )}
-            onEndReached={fetchMoreData}
-            onEndReachedThreshold={0.1}
-            ListFooterComponent={renderLoader}
-            ListEmptyComponent={renderEmpty}
-            showsVerticalScrollIndicator={false}
-          />
-        </SafeAreaView>
-      )}
+      <FlatList
+        data={getUser.filteredUsers}
+        keyExtractor={(item, index) => item.id.name + index}
+        renderItem={({item}) => (
+          <View style={styles.cardContainer}>
+            <UserCard person={item} />
+          </View>
+        )}
+        onEndReached={fetchMoreData}
+        onEndReachedThreshold={0.1}
+        // ListFooterComponent={renderLoader}
+        ListEmptyComponent={renderEmpty}
+        showsVerticalScrollIndicator={false}
+      />
     </View>
   );
 };

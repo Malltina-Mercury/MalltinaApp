@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   fullName: {
     textAlign: 'left',
     color: '#1f2937',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '600',
   },
   city: {
