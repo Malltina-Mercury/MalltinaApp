@@ -24,18 +24,19 @@ const UserList: React.FC<Props> = () => {
   const [params, setParams] = useState<UsersParams>(initialParams);
   const [data, isLoaded] = useGetUserList(params, [params]);
 
-  const [lastData, setLastData] = useState<Person[]>()
+  // const [lastData, setLastData] = useState<Person[]>()
 
   useEffect(() => {
+    // console.log(getUser)
     if (data?.results) {
-      setLastData(data?.results)
+      // setLastData(data?.results)
       setUsers(prev => {
         const newState = prev;
         newState.filteredUsers = [
           ...(prev.filteredUsers || []),
           ...data?.results,
         ];
-        newState.query=prev.query;
+        newState.query=prev.query; /* emel | for save search text in search box */
         return newState;
       });
       setUserCache(prev => {
@@ -50,16 +51,30 @@ const UserList: React.FC<Props> = () => {
 
   /* use callback : if page add 1 get call useGetUserList again */
   const fetchMoreData = useCallback((): void => {
-    console.log(params.page)
-    if (getUser.query !== '' && getUser.filteredUsers !== undefined){
-      setLastData(getUser.filteredUsers);
-    }
-    else{
+    // console.log('getUser.query')
+    // console.log(getUser.query)
+    if (getUser.query === undefined){
+      // console.log(params.page)
       setParams({
         ...params,
         page: params.page ? params.page + 1 : params.page,
       });
-      setLastData(data?.results);
+      if (data?.results) {
+        // setUsers(prev => {
+        //   console.log(prev)
+        //   const newState = prev;
+        //   getUser.filteredUsers = [
+        //     ...(getUser.filteredUsers || []),
+        //     ...data?.results,
+        //   ];
+        //   newState.query=prev.query;
+        //   return newState;
+        // });
+        setUsers({
+          ...getUser,
+          filteredUsers : [...getUser.filteredUsers || [], ...data?.results]
+        })
+      }
     }
 
   }, [params]);
@@ -76,8 +91,7 @@ const UserList: React.FC<Props> = () => {
       ) : (
         <SafeAreaView>
           <FlatList
-            data={lastData}
-            // data={getUser.filteredUsers}
+            data={getUser.filteredUsers}
             keyExtractor={(item, index) => item.id.name + index}
             renderItem={({item}) => (
               <View style={styles.cardContainer}>
