@@ -7,42 +7,34 @@ import PhoneEmailIcon from 'react-native-vector-icons/MaterialIcons';
 
 interface Props {
   modalVisible: boolean;
-  setModalVisible: (value: boolean | ((prevVar: boolean) => boolean)) => void;
+  onDismiss?: () => void;
   person: Person;
 }
 
 export const ModalUser: React.FC<Props> = ({
   modalVisible,
   person,
-  setModalVisible,
+  onDismiss,
 }) => {
   const {email, dob, name, location, picture, nat, phone} = person;
 
   const emoji = nat
     .toUpperCase()
     .replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397));
-  const CloseModal = () => {
-    setModalVisible(prev => !prev);
-  };
 
   return (
     <Modal
       animationType={'fade'}
       transparent
       visible={modalVisible}
-      onRequestClose={CloseModal}>
+      onRequestClose={onDismiss}>
       <TouchableOpacity
         activeOpacity={1}
         style={styles.viewModal}
-        onPress={CloseModal}>
+        onPress={onDismiss}>
         <View style={styles.cardModal}>
           <View style={styles.iconClose}>
-            <CloseIcon
-              name="close"
-              size={35}
-              color="red"
-              onPress={CloseModal}
-            />
+            <CloseIcon name="close" size={35} color="red" onPress={onDismiss} />
           </View>
 
           <View style={styles.viewImage}>
