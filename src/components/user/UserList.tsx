@@ -41,10 +41,6 @@ const UserList: React.FC<Props> = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
 
-  const renderEmpty = () => {
-    return <Text>No Data at the moment or check Internet</Text>;
-  };
-
   return (
     <FlatList
       style={styles.container}
@@ -53,11 +49,11 @@ const UserList: React.FC<Props> = () => {
           ? searchContext.filteredUsers
           : usersContext.users
       }
-      keyExtractor={(item, index) => item.id.name + index}
+      keyExtractor={item => `${item?.id?.name}-${item?.id?.value}`}
       renderItem={({item}) => <UserCard person={item} />}
       onEndReached={fetchMoreData}
       onEndReachedThreshold={0.1}
-      ListEmptyComponent={renderEmpty}
+      ListEmptyComponent={<Text>No Data at the moment or check Internet</Text>}
       showsVerticalScrollIndicator={false}
     />
   );

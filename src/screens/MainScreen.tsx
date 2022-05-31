@@ -11,7 +11,7 @@ interface Props {}
 
 export const MainScreen: React.FC<Props> = () => {
   const [usersContext, setUserContexts] = useUsersContext();
-  const [searchContext, setSearchContext] = useSearchContext();
+  const [, setSearchContext] = useSearchContext();
 
   const closeModal = () => {
     setUserContexts(prevState => {
@@ -27,7 +27,8 @@ export const MainScreen: React.FC<Props> = () => {
       let newSearchContext: SearchContext;
       if (query && query.trim()) {
         const filteredUsers = usersContext.users?.filter(user => {
-          const fullName = `${user.name.first} ${user.name.last}`.toLowerCase();
+          const fullName =
+            `${user?.name?.first} ${user?.name?.last}`.toLowerCase();
           return fullName.indexOf(query.trim()) !== -1;
         });
         newSearchContext = {
@@ -58,14 +59,14 @@ export const MainScreen: React.FC<Props> = () => {
         onSubmitSearch={onSubmitSearch}
         onChangeQuery={onSearchQueryChanged}
       />
+
       <UserList />
-      {usersContext.showSelectedUserModal && usersContext.selectedUser && (
-        <ModalUser
-          modalVisible={usersContext.showSelectedUserModal}
-          person={usersContext.selectedUser}
-          onDismiss={closeModal}
-        />
-      )}
+
+      <ModalUser
+        modalVisible={usersContext?.showSelectedUserModal}
+        person={usersContext.selectedUser || {}}
+        onDismiss={closeModal}
+      />
     </>
   );
 };

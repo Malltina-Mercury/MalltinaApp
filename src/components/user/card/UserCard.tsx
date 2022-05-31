@@ -14,7 +14,7 @@ interface Props {
 export const UserCard: React.FC<Props> = ({person}) => {
   const {name, location, picture} = person;
   const [, setUserContexts] = useUsersContext();
-  const bgColor = stringBasedRandomHexColor(`${name.first} ${name.last}`);
+  const bgColor = stringBasedRandomHexColor(`${name?.first} ${name?.last}`);
 
   const openModal = () => {
     setUserContexts(prevState => {
@@ -30,11 +30,11 @@ export const UserCard: React.FC<Props> = ({person}) => {
       style={styles.card}
       activeOpacity={0.8}
       onPress={openModal}>
-      <CardThumbnail bgColor={bgColor} imageUri={picture.thumbnail} />
+      <CardThumbnail bgColor={bgColor} imageUri={picture?.thumbnail || ''} />
 
       <CardContent
-        title={`${name.title} ${name.first} ${name.last}`}
-        subTitle={location.city}
+        title={`${name?.title} ${name?.first} ${name?.last}`}
+        subTitle={location?.city}
       />
     </TouchableOpacity>
   );

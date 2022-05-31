@@ -6,21 +6,23 @@ import CloseIcon from 'react-native-vector-icons/FontAwesome';
 import PhoneEmailIcon from 'react-native-vector-icons/MaterialIcons';
 
 interface Props {
-  modalVisible: boolean;
+  modalVisible?: boolean;
   onDismiss?: () => void;
   person: Person;
 }
 
 export const ModalUser: React.FC<Props> = ({
-  modalVisible,
+  modalVisible = false,
   person,
   onDismiss,
 }) => {
   const {email, dob, name, location, picture, nat, phone} = person;
 
-  const emoji = nat
-    .toUpperCase()
-    .replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397));
+  const emoji =
+    nat &&
+    nat
+      .toUpperCase()
+      .replace(/./g, char => String.fromCodePoint(char.charCodeAt(0) + 127397));
 
   return (
     <Modal
@@ -38,11 +40,11 @@ export const ModalUser: React.FC<Props> = ({
           </View>
 
           <View style={styles.viewImage}>
-            <Image style={styles.image} source={{uri: picture.medium}} />
+            <Image style={styles.image} source={{uri: picture?.medium}} />
           </View>
 
           <Text style={styles.fullName}>
-            {name.title} {name.first} {name.last}{' '}
+            {name?.title} {name?.first} {name?.last}
           </Text>
           <View style={styles.viewEmail}>
             <PhoneEmailIcon name="email" size={20} color="#fbbf24" />
@@ -57,15 +59,15 @@ export const ModalUser: React.FC<Props> = ({
             <Text
               style={[styles.city, {borderColor: '#d946ef', color: '#d946ef'}]}>
               {' '}
-              {emoji} {location.country}
+              {emoji} {location?.country}
             </Text>
             <Text
               style={[styles.city, {borderColor: '#0ea5e9', color: '#0ea5e9'}]}>
-              {location.city}
+              {location?.city}
             </Text>
             <Text
               style={[styles.city, {borderColor: '#10b981', color: '#10b981'}]}>
-              {dob.age}
+              {dob?.age}
             </Text>
           </View>
         </View>
