@@ -29,16 +29,16 @@ export const SearchInput: React.FC<Props> = ({
   }, [onSubmitSearch, query]);
 
   return (
-    <View style={styles.cardSearch}>
+    <View style={styles.container}>
       <MaterialIcon
         name="magnify"
-        size={height / 23}
-        color="#fbbf24"
+        // size={32}
+        style={styles.icon}
         onPress={onSubmitSearchHandler}
       />
 
       <TextInput
-        style={styles.inputText}
+        style={styles.input}
         placeholder="Search Name"
         underlineColorAndroid="transparent"
         value={query}

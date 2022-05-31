@@ -34,7 +34,7 @@ export const UserCard: React.FC<Props> = ({person}) => {
 
       <CardContent
         title={`${name?.title} ${name?.first} ${name?.last}`}
-        subTitle={location?.city}
+        subTitle={`${location?.city}, ${location?.country}`}
       />
     </TouchableOpacity>
   );

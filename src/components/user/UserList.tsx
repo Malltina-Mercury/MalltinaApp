@@ -44,6 +44,7 @@ const UserList: React.FC<Props> = () => {
   return (
     <FlatList
       style={styles.container}
+      contentContainerStyle={styles.contentContainer}
       data={
         searchContext.query && searchContext.query.trim()
           ? searchContext.filteredUsers
