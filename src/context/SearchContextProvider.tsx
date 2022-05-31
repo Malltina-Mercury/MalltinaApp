@@ -8,6 +8,7 @@ import {SearchContext} from 'types/contexts/SearchContext';
 
 type SetSearchContext = React.Dispatch<React.SetStateAction<SearchContext>>;
 type SearchContextHook = [SearchContext, SetSearchContext];
+
 interface Props {}
 
 const Context = createContext<SearchContext>({});
