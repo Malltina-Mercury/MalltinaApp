@@ -1,9 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {FlatList, SafeAreaView, Text, View} from 'react-native';
+import {FlatList, Text, View} from 'react-native';
 import {useGetUserList} from 'hooks/useGetUserList';
 import {UsersParams} from 'types/api/users';
 import {UserCard} from './card/UserCard';
-import Loader from './Loader';
 import {useSearchContext} from 'context/SearchContextProvider';
 import {useUsersContext} from 'context/UsersContextProvider';
 import styles from './UserListStyles';
@@ -15,9 +14,9 @@ const UserList: React.FC<Props> = () => {
   const [, setUserCache] = useUsersContext();
 
   const initialParams = {
-    page: 2,
+    page: 1,
     exc: '',
-    results: 12,
+    results: 10,
     seed: 'Maltina',
   };
   const [params, setParams] = useState<UsersParams>(initialParams);
@@ -31,11 +30,14 @@ const UserList: React.FC<Props> = () => {
           ...(prev.filteredUsers || []),
           ...data?.results,
         ];
+        newState.query =
+          prev.query; /* emel | for save search text in search box */
         return newState;
       });
       setUserCache(prev => {
         const newState = prev;
         newState.users = [...(prev.users || []), ...data?.results];
+        newState.latestPageFetched = params.page;
         return newState;
       });
     }
@@ -44,41 +46,52 @@ const UserList: React.FC<Props> = () => {
 
   /* use callback : if page add 1 get call useGetUserList again */
   const fetchMoreData = useCallback((): void => {
-    // console.log(params.page)
-    setParams({
-      ...params,
-      page: params.page ? params.page + 1 : params.page,
-    });
+    if (!getUser?.query) {
+      console.log(params.page);
+      setParams({
+        ...params,
+        page: params.page ? params.page + 1 : params.page,
+      });
+      if (data?.results) {
+        //   setUsers({
+        //     ...getUser,
+        //     filteredUsers : [...getUser.filteredUsers || [], ...data?.results]
+        //   })
+        setUsers(prev => {
+          // console.log(params.page)
+          const newState = prev;
+          // newState.filteredUsers = [
+          //   ...(prev.filteredUsers || []),
+          //   ...data?.results,
+          // ];
+          newState.filteredUsers = [...data?.results];
+          return newState;
+        });
+      }
+    }
   }, [params]);
 
-  const renderLoader = () => (isLoaded ? <Loader /> : null);
+  // const renderLoader = () => (isLoaded ? <Loader /> : null);
   const renderEmpty = () => {
     return <Text>No Data at the moment or check Internt</Text>;
   };
 
   return (
     <View style={styles.container}>
-      {!isLoaded ? (
-        <Loader />
-      ) : (
-        <SafeAreaView>
-          <FlatList
-            data={getUser.filteredUsers}
-            keyExtractor={(item, index) => item.id.name + index}
-            renderItem={({item}) => (
-              <View style={styles.cardContainer}>
-                <UserCard person={item} />
-              </View>
-            )}
-            onEndReached={fetchMoreData}
-            onEndReachedThreshold={0.1}
-            ListFooterComponent={renderLoader}
-            ListEmptyComponent={renderEmpty}
-            contentContainerStyle={{flexDirection: 'column', paddingTop: 40}}
-            showsVerticalScrollIndicator={false}
-          />
-        </SafeAreaView>
-      )}
+      <FlatList
+        data={getUser.filteredUsers}
+        keyExtractor={(item, index) => item.id.name + index}
+        renderItem={({item}) => (
+          <View style={styles.cardContainer}>
+            <UserCard person={item} />
+          </View>
+        )}
+        onEndReached={fetchMoreData}
+        onEndReachedThreshold={0.1}
+        // ListFooterComponent={renderLoader}
+        ListEmptyComponent={renderEmpty}
+        showsVerticalScrollIndicator={false}
+      />
     </View>
   );
 };
