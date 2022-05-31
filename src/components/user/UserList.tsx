@@ -10,8 +10,8 @@ import styles from './UserListStyles';
 interface Props {}
 
 const UserList: React.FC<Props> = () => {
-  const [getUser, setUsers] = useSearchContext();
-  const [, setUserCache] = useUsersContext();
+  const [searchContext, setSearchContext] = useSearchContext();
+  const [usersContext, setUsersContext] = useUsersContext();
 
   const initialParams = {
     page: 1,
@@ -24,7 +24,7 @@ const UserList: React.FC<Props> = () => {
 
   useEffect(() => {
     if (data?.results) {
-      setUsers(prev => {
+      setSearchContext(prev => {
         const newState = prev;
         newState.filteredUsers = [
           ...(prev.filteredUsers || []),
@@ -34,7 +34,7 @@ const UserList: React.FC<Props> = () => {
           prev.query; /* emel | for save search text in search box */
         return newState;
       });
-      setUserCache(prev => {
+      setUsersContext(prev => {
         const newState = prev;
         newState.users = [...(prev.users || []), ...data?.results];
         newState.latestPageFetched = params.page;
@@ -46,7 +46,7 @@ const UserList: React.FC<Props> = () => {
 
   /* use callback : if page add 1 get call useGetUserList again */
   const fetchMoreData = useCallback((): void => {
-    if (!getUser?.query) {
+    if (!searchContext?.query) {
       setParams({
         ...params,
         page: params.page ? params.page + 1 : params.page,
@@ -56,7 +56,7 @@ const UserList: React.FC<Props> = () => {
         //     ...getUser,
         //     filteredUsers : [...getUser.filteredUsers || [], ...data?.results]
         //   })
-        setUsers(prev => {
+        setSearchContext(prev => {
           // console.log(params.page)
           const newState = prev;
           // newState.filteredUsers = [
@@ -68,7 +68,7 @@ const UserList: React.FC<Props> = () => {
         });
       }
     }
-  }, [params]);
+  }, [data?.results, params, searchContext?.query, setSearchContext]);
 
   const renderEmpty = () => {
     return <Text>No Data at the moment or check Internet</Text>;
@@ -77,7 +77,11 @@ const UserList: React.FC<Props> = () => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={getUser.filteredUsers}
+        data={
+          searchContext.query && searchContext.query.trim()
+            ? searchContext.filteredUsers
+            : usersContext.users
+        }
         keyExtractor={(item, index) => item.id.name + index}
         renderItem={({item}) => (
           <View style={styles.cardContainer}>
