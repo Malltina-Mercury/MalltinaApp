@@ -49,10 +49,10 @@ const UserList: React.FC<Props> = () => {
           ? searchContext.filteredUsers
           : usersContext.users
       }
-      keyExtractor={item => `${item?.id?.name}-${item?.id?.value}`}
+      keyExtractor={(_, index) => index.toString()}
       renderItem={({item}) => <UserCard person={item} />}
       onEndReached={fetchMoreData}
-      onEndReachedThreshold={0.1}
+      onEndReachedThreshold={0}
       ListEmptyComponent={<Text>No Data at the moment or check Internet</Text>}
       showsVerticalScrollIndicator={false}
     />
