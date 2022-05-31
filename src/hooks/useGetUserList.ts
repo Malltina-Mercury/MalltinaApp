@@ -3,5 +3,12 @@ import {UsersParams, UsersResponse} from 'types/api/users';
 import {DependencyList} from 'react';
 
 export const useGetUserList = (params: UsersParams, deps?: DependencyList) => {
-  return useGetRequest<UsersResponse, UsersParams>('/', params, deps);
+  return useGetRequest<UsersResponse, UsersParams>(
+    '/',
+    {
+      ...params,
+      nat: 'au,br,ca,ch,de,dk,es,fi,fr,gb,ie,no,nl,nz,tr,us',
+    },
+    deps,
+  );
 };

@@ -1,12 +1,12 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 
-const { width, height } = Dimensions.get('screen');
+const {width, height} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
   viewModal: {
     backgroundColor: '#8b8b8bc2',
     height: height,
-    width: width
+    width: width,
   },
   cardModal: {
     height: height / 2,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   viewEmail: {
     flexDirection: 'row',
     marginTop: height / 90,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   email: {
     fontSize: 14,
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   iconClose: {
     alignSelf: 'flex-end',
-    marginRight: width / 20
+    marginRight: width / 20,
   },
 });
 export default styles;

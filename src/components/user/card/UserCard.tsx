@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import styles from './UserCardStyles';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import {Person} from 'types/entity/person';
-import {ModalUser} from 'components/modal/ModalUser';
+import {ModalUser} from 'components/user/modal/ModalUser';
 import {stringBasedRandomHexColor} from 'helpers/color';
 import {CardThumbnail} from 'components/user/card/CardThumbnail';
 import {CardContent} from 'components/user/card/CardContent';

@@ -47,7 +47,6 @@ const UserList: React.FC<Props> = () => {
   /* use callback : if page add 1 get call useGetUserList again */
   const fetchMoreData = useCallback((): void => {
     if (!getUser?.query) {
-      console.log(params.page);
       setParams({
         ...params,
         page: params.page ? params.page + 1 : params.page,
@@ -71,9 +70,8 @@ const UserList: React.FC<Props> = () => {
     }
   }, [params]);
 
-  // const renderLoader = () => (isLoaded ? <Loader /> : null);
   const renderEmpty = () => {
-    return <Text>No Data at the moment or check Internt</Text>;
+    return <Text>No Data at the moment or check Internet</Text>;
   };
 
   return (

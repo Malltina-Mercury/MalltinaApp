@@ -6,7 +6,7 @@ interface Props {}
 const Loader: React.FC<Props> = () => {
   return (
     <View style={styles.container}>
-      <ActivityIndicator size={'large'} color="grey" />
+      <ActivityIndicator size="large" color="grey" />
     </View>
   );
 };
