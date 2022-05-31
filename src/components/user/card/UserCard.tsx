@@ -30,7 +30,11 @@ export const UserCard: React.FC<Props> = ({person}) => {
       style={styles.card}
       activeOpacity={0.8}
       onPress={openModal}>
-      <CardThumbnail bgColor={bgColor} imageUri={picture?.thumbnail || ''} />
+      <CardThumbnail
+        bgColor={bgColor}
+        imageUri={picture?.thumbnail || ''}
+        size={64}
+      />
 
       <CardContent
         title={`${name?.title} ${name?.first} ${name?.last}`}

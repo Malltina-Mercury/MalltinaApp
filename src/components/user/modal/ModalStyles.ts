@@ -1,56 +1,48 @@
 import {Dimensions, StyleSheet} from 'react-native';
+import {colors} from 'styles/colors';
 
 const {width, height} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
-  viewModal: {
-    backgroundColor: '#8b8b8bc2',
-    height: height,
-    width: width,
+  overlay: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'stretch',
+    justifyContent: 'center',
+    backgroundColor: `${colors.slate['500']}80`,
+    padding: 16,
   },
-  cardModal: {
-    height: height / 2,
-    width: width / 1.1,
+  container: {
+    padding: 24,
+    borderRadius: 16,
     alignItems: 'center',
-    alignSelf: 'center',
-    paddingTop: height / 60,
-    paddingBottom: height / 20,
-    marginTop: height / 5,
-
-    borderRadius: height / 70,
-    backgroundColor: '#fff',
-    shadowColor: '#000',
+    backgroundColor: colors.white,
+    shadowColor: colors.slate['600'],
     shadowOffset: {
       width: 0,
-      height: 7,
+      height: 2,
     },
-    shadowOpacity: 0.43,
-    shadowRadius: 9.51,
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
     elevation: 15,
   },
-  viewImage: {
-    width: width / 2.2,
-    height: height / 4.5,
-    borderRadius: (width / 2.2 + height / 4.5) / 2,
-    backgroundColor: '#fbbf24',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   fullName: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#1f2937',
-    marginTop: height / 60,
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '400',
+    color: colors.slate['800'],
   },
   viewEmail: {
     flexDirection: 'row',
-    marginTop: height / 90,
+    marginTop: 8,
     alignItems: 'center',
   },
   email: {
     fontSize: 14,
-    color: 'grey',
-    paddingLeft: width / 60,
+    fontWeight: '200',
+    color: colors.slate['600'],
+    paddingLeft: 8,
   },
   ViewLocations: {
     flexDirection: 'row',
@@ -60,22 +52,18 @@ const styles = StyleSheet.create({
   },
   city: {
     fontSize: 16,
-    paddingVertical: height / 190,
-    paddingHorizontal: width / 35,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
     borderRadius: 15,
-    color: '#fff',
-    marginRight: width / 40,
+    marginRight: 8,
     borderWidth: 2,
   },
-  image: {
-    width: width / 3,
-    height: height / 6,
-    borderRadius: (width / 3 + height / 6) / 2,
-    resizeMode: 'contain',
-  },
-  iconClose: {
-    alignSelf: 'flex-end',
-    marginRight: width / 20,
+  dismissIcon: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    fontSize: 24,
+    color: colors.slate['600'],
   },
 });
 export default styles;
