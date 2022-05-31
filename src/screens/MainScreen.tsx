@@ -6,6 +6,9 @@ import {ModalUser} from 'components/user/modal/ModalUser';
 import {useSearchContext} from 'context/SearchContextProvider';
 import {useDebounce} from 'hooks/useDebounce';
 import {SearchContext} from 'types/contexts/SearchContext';
+import {View} from 'react-native';
+
+import styles from './MainScreen.styles';
 
 interface Props {}
 
@@ -54,7 +57,7 @@ export const MainScreen: React.FC<Props> = () => {
   const onSubmitSearch = useCallback(searchInUsers, [searchInUsers]);
 
   return (
-    <>
+    <View style={styles.container}>
       <SearchInput
         onSubmitSearch={onSubmitSearch}
         onChangeQuery={onSearchQueryChanged}
@@ -67,6 +70,6 @@ export const MainScreen: React.FC<Props> = () => {
         person={usersContext.selectedUser || {}}
         onDismiss={closeModal}
       />
-    </>
+    </View>
   );
 };
