@@ -50,7 +50,7 @@ const UserList: React.FC<Props> = () => {
           ? searchContext.filteredUsers
           : usersContext.users
       }
-      keyExtractor={(_, index) => index.toString()}
+      keyExtractor={(item, index) => item.login?.sha256 || index.toString()}
       renderItem={({item}) => <UserCard person={item} />}
       onEndReached={fetchMoreData}
       onEndReachedThreshold={0}
