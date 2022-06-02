@@ -1,10 +1,9 @@
 import React from 'react';
 import styles from './UserCardStyles';
 import {TouchableOpacity} from 'react-native';
-import {Person} from 'types/entity/person';
-import {stringBasedRandomHexColor} from 'helpers/color';
-import {CardThumbnail} from 'components/user/card/CardThumbnail';
-import {CardContent} from 'components/user/card/CardContent';
+import {Person} from 'types';
+import {stringBasedRandomHexColor} from 'helpers';
+import {CardThumbnail, CardContent} from 'components';
 import {useUsersContext} from 'context/UsersContextProvider';
 
 interface Props {

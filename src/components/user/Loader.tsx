@@ -3,15 +3,13 @@ import {ActivityIndicator, StyleSheet, View} from 'react-native';
 
 interface Props {}
 
-const Loader: React.FC<Props> = () => {
+export const Loader: React.FC<Props> = () => {
   return (
     <View style={styles.container}>
       <ActivityIndicator size="large" color="grey" />
     </View>
   );
 };
-
-export default Loader;
 
 const styles = StyleSheet.create({
   container: {

@@ -1,5 +1,5 @@
 import {useGetRequest} from 'hooks/useGetRequest';
-import {UsersParams, UsersResponse} from 'types/api/users';
+import {UsersParams, UsersResponse} from 'types';
 import {DependencyList} from 'react';
 
 export const useGetUserList = (params: UsersParams, deps?: DependencyList) => {

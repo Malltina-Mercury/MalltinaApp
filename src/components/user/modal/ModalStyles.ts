@@ -1,7 +1,7 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import {colors} from 'styles/colors';
 
-const {width, height} = Dimensions.get('screen');
+const {height} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
   overlay: {

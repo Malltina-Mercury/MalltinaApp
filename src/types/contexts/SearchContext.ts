@@ -1,4 +1,4 @@
-import {Person} from 'types/entity/person';
+import {Person} from 'types/index';
 
 export interface SearchContext {
   query?: string;

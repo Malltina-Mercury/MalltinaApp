@@ -1,9 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import styles from './SearchInputStyles';
-import {Dimensions, TextInput, View} from 'react-native';
+import {TextInput, View} from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-const {height} = Dimensions.get('screen');
 
 interface Props {
   onChangeQuery: (query: string) => void;
@@ -32,7 +30,6 @@ export const SearchInput: React.FC<Props> = ({
     <View style={styles.container}>
       <MaterialIcon
         name="magnify"
-        // size={32}
         style={styles.icon}
         onPress={onSubmitSearchHandler}
       />

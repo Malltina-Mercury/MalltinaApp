@@ -4,7 +4,7 @@ import React, {
   useContext,
   useState,
 } from 'react';
-import {SearchContext} from 'types/contexts/SearchContext';
+import {SearchContext} from 'types';
 
 type SetSearchContext = React.Dispatch<React.SetStateAction<SearchContext>>;
 type SearchContextHook = [SearchContext, SetSearchContext];

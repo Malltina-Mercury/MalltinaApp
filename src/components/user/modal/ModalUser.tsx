@@ -1,11 +1,10 @@
 import React from 'react';
 import {Modal, Text, TouchableOpacity, View} from 'react-native';
-import {Person} from 'types/entity/person';
+import {Person} from 'types';
 import styles from './ModalStyles';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {getFlagEmoji} from 'helpers/string';
-import {CardThumbnail} from 'components/user/card/CardThumbnail';
-import {stringBasedRandomHexColor} from 'helpers/color';
+import {getFlagEmoji, stringBasedRandomHexColor} from 'helpers';
+import {CardThumbnail} from 'components';
 import {colors} from 'styles/colors';
 
 const months = [

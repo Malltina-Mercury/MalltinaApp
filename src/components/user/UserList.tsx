@@ -1,15 +1,15 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {FlatList, Text} from 'react-native';
 import {useGetUserList} from 'hooks/useGetUserList';
-import {UsersParams} from 'types/api/users';
-import {UserCard} from './card/UserCard';
+import {UsersParams} from 'types';
 import {useSearchContext} from 'context/SearchContextProvider';
 import {useUsersContext} from 'context/UsersContextProvider';
 import styles from './UserListStyles';
+import {UserCard} from 'components';
 
 interface Props {}
 
-const UserList: React.FC<Props> = () => {
+export const UserList: React.FC<Props> = () => {
   const [searchContext] = useSearchContext();
   const [usersContext, setUsersContext] = useUsersContext();
   const [params, setParams] = useState<UsersParams>({page: 1});
@@ -59,5 +59,3 @@ const UserList: React.FC<Props> = () => {
     />
   );
 };
-
-export default UserList;
