@@ -4,7 +4,7 @@ import {Person} from 'types/entity/person';
 import styles from './ModalStyles';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {getFlagEmoji} from 'helpers/string';
-import {CardThumbnail} from 'components/user/card/CardThumbnail';
+import {CardThumbnail} from 'components/index';
 import {stringBasedRandomHexColor} from 'helpers/color';
 import {colors} from 'styles/colors';
 
