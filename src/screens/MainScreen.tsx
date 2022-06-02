@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useMemo} from 'react';
 import {SearchInput} from 'components/search/SearchInput';
 import UserList from '../components/user/UserList';
 import {useUsersContext} from 'context/UsersContextProvider';
@@ -9,12 +9,13 @@ import {SearchContext} from 'types/contexts/SearchContext';
 import {View} from 'react-native';
 
 import styles from './MainScreen.styles';
+import {Person} from 'types/entity/person';
 
 interface Props {}
 
 export const MainScreen: React.FC<Props> = () => {
   const [usersContext, setUserContexts] = useUsersContext();
-  const [, setSearchContext] = useSearchContext();
+  const [searchContext, setSearchContext] = useSearchContext();
 
   const closeModal = () => {
     setUserContexts(prevState => {
@@ -26,29 +27,38 @@ export const MainScreen: React.FC<Props> = () => {
   };
 
   const searchInUsers = useCallback(
-    (query: string) => {
-      let newSearchContext: SearchContext;
-      if (query && query.trim()) {
-        const filteredUsers = usersContext.users?.filter(user => {
-          const fullName =
-            `${user?.name?.first} ${user?.name?.last}`.toLowerCase();
-          return fullName.indexOf(query.trim()) !== -1;
-        });
-        newSearchContext = {
-          query: query,
-          filteredUsers: filteredUsers,
-        };
-      } else {
-        newSearchContext = {
-          query: undefined,
-          filteredUsers: [],
-        };
+    (query: string | undefined) => {
+      if (!query || !query.trim()) {
+        query = undefined;
       }
-
-      setSearchContext(newSearchContext);
+      setSearchContext(prevState => {
+        return {
+          ...prevState,
+          query: query,
+        };
+      });
     },
-    [setSearchContext, usersContext.users],
+    [setSearchContext],
   );
+
+  useMemo<Person[] | undefined>(() => {
+    let users: Person[] | undefined = [];
+    const query = searchContext.query;
+    if (query && query.trim()) {
+      users = usersContext.users?.filter(user => {
+        const fullName =
+          `${user?.name?.first} ${user?.name?.last}`.toLowerCase();
+        return fullName.indexOf(query.trim()) !== -1;
+      });
+    }
+    setSearchContext(prevState => {
+      return {
+        ...prevState,
+        filteredUsers: users,
+      };
+    });
+    return users;
+  }, [searchContext.query, setSearchContext, usersContext.users]);
 
   const searchDebounce = useDebounce(searchInUsers, 500);
 
