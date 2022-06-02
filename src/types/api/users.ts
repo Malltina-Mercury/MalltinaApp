@@ -1,6 +1,4 @@
-import {Person} from 'types/entity/person';
-import {BaseResponse} from 'types/api/baseResponse';
-import {BaseParams} from 'types/api/baseParams';
+import {Person, BaseResponse, BaseParams} from 'types/index';
 
 export interface UsersParams extends BaseParams {
   page?: number;

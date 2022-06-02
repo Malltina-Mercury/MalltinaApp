@@ -1,15 +1,12 @@
 import React, {useCallback, useMemo} from 'react';
-import {SearchInput} from 'components/search/SearchInput';
-import UserList from '../components/user/UserList';
+import {UserList, SearchInput, ModalUser} from '../components/index';
 import {useUsersContext} from 'context/UsersContextProvider';
-import {ModalUser} from 'components/user/modal/ModalUser';
 import {useSearchContext} from 'context/SearchContextProvider';
 import {useDebounce} from 'hooks/useDebounce';
-import {SearchContext} from 'types/contexts/SearchContext';
 import {View} from 'react-native';
 
 import styles from './MainScreen.styles';
-import {Person} from 'types/entity/person';
+import {Person} from 'types/index';
 
 interface Props {}
 
