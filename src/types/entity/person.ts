@@ -1,7 +1,4 @@
-import {PersonLocation} from 'types/entity/personLocation';
-import {PersonName} from 'types/entity/personName';
-import {PersonLogin} from 'types/entity/personLogin';
-import {PersonPicture} from 'types/entity/personPicture';
+import {PersonLocation, PersonName, PersonLogin, PersonPicture} from 'types/index';
 
 export interface Person {
   gender?: 'male' | 'female';

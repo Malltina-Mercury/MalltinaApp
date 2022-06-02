@@ -6,7 +6,7 @@ import {useDebounce} from 'hooks/useDebounce';
 import {View} from 'react-native';
 
 import styles from './MainScreen.styles';
-import {Person} from 'types/entity/person';
+import {Person} from 'types/index';
 
 interface Props {}
 

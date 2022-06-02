@@ -4,7 +4,7 @@ import React, {
   useContext,
   useState,
 } from 'react';
-import {UsersContext} from 'types/contexts/UsersContext';
+import {UsersContext} from 'types/index';
 
 type SetUsersContext = React.Dispatch<React.SetStateAction<UsersContext>>;
 type UsersContextHook = [UsersContext, SetUsersContext];
