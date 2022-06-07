@@ -1,4 +1,4 @@
-import {BaseResponseInfo} from 'types/api/BaseResponseInfo';
+import {BaseResponseInfo} from 'types/index';
 
 export interface BaseResponse {
   info: BaseResponseInfo;

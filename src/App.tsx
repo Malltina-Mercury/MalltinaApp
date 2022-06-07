@@ -1,19 +1,18 @@
 import React from 'react';
-import {SafeAreaView, StatusBar, Text} from 'react-native';
+import {SafeAreaView, StatusBar} from 'react-native';
 import {MainScreen} from '@screens/MainScreen';
-import {useGetUserList} from 'hooks/useGetUserList';
+import SearchContextProvider from 'context/SearchContextProvider';
+import UsersContextProvider from 'context/UsersContextProvider';
 
-const App: React.FC = () => {
-  const [data, isLoaded, error] = useGetUserList({results: 1, page: 1}, []);
-
-  return (
-    <SafeAreaView>
-      <StatusBar />
-      {/*<MainScreen />*/}
-      <Text>{JSON.stringify(data)}</Text>
-      <Text>{JSON.stringify(error)}</Text>
-    </SafeAreaView>
-  );
-};
+const App: React.FC = () => (
+  <SafeAreaView>
+    <SearchContextProvider>
+      <UsersContextProvider>
+        <StatusBar />
+        <MainScreen />
+      </UsersContextProvider>
+    </SearchContextProvider>
+  </SafeAreaView>
+);
 
 export default App;

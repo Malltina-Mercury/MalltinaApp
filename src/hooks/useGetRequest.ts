@@ -1,8 +1,6 @@
 import {DependencyList, useEffect, useState} from 'react';
-import request from 'helpers/request';
-import {BaseParams} from 'types/api/baseParams';
-import {SEED} from 'helpers/constants';
-import {ApiResponse} from 'types/apiResponse';
+import {request, SEED} from 'helpers/index';
+import {BaseParams, ApiResponse} from 'types/index';
 
 export const useGetRequest = <ResponseT, ParamsT extends BaseParams>(
   url: string,
